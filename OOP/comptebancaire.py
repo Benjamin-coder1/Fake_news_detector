@@ -8,7 +8,7 @@ class CompteBancaireLCL :
     nombre_de_compte = 0
 
     def __init__(self, Nom, Prenom, Age, Solde, Statut) : 
-        if (type(Nom) is str) and (type(Prenom) is str) and (type(Age) is int) and (type(statut) is str) : 
+        if (type(Nom) is str) and (type(Prenom) is str) and (type(Age) is int) and (type(Statut) is str) : 
             self.nom = Nom
             self.prenom = Prenom
             self.age = Age
@@ -55,7 +55,7 @@ class ComptePatron(CompteBancaireLCL) :
 
     def __init__(self,Nom, Prenom, Age, Solde) : 
         """"compte special sans plafon de retrait enorme qui ne verse de l'argent qu'aux salariés"""
-        CompteBancaireLCL.__init__(self,Nom, Prenom, Age, 1000000000000,"Patron")
+        CompteBancaireLCL.__init__(self,Nom, Prenom, Age,Solde,"Patron")
         self.plafond = 20000
 
     def add_money_Salarie(self, money, salarie) :
