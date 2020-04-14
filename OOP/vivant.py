@@ -23,7 +23,7 @@ class EtreVivant():
 class Humain(EtreVivant):
 		"""docstring for Humain"""
 		def __init__(self,age,taille,poids,genre,nom):
-			if (type(age)!=int or type(taille)!=float or (type(poids)!=float and type(poids)!=int) or type(genre)!=str or type(nom)!=str):
+			if (type(age)!=int or (hutype(taille)!=float and hutype(taille)!=int)  or (type(poids)!=float and type(poids)!=int) or type(genre)!=str or type(nom)!=str):
 				raise ErreurInitialisation
 			self.age = age
 			self.taille=taille
@@ -41,9 +41,9 @@ class Humain(EtreVivant):
 			print("salut humain")
 
 class Animal(EtreVivant):
-	"""docstring for Animal"""
+	"""Animal ne peux vivre que dans l'eau, l'air ou la terre """
 	def __init__(self,age,taille,poids,espece,millieu_de_vie):
-		if (type(age)!=int or type(taille)!=float or (type(poids)!=float and type(poids)!=int) or type(espece)!=str):
+		if (type(age)!=int or (type(taille)!=float and type(taille)!= int) or (type(poids)!=float and type(poids)!=int) or type(espece)!=str):
 			raise ErreurInitialisation
 		if (millieu_de_vie!="eau" and millieu_de_vie!="terre" and millieu_de_vie!="air" ):
 			raise ErreurInitialisation
