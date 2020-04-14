@@ -1,0 +1,66 @@
+class NotEnoughtMoney(Exception) : pass
+class NotRealMoney(Exception) : pass
+class LimitePlafond(Exception) : pass
+class ErrorType(Exception) : pass
+
+
+class CompteBancaireLCL :
+    nombre_de_compte = 0
+
+    def __init__(self, Nom, Prenom, Age, Solde, Statut) : 
+        self.nom = Nom
+        self.prenom = Prenom
+        self.age = Age
+        self.banque = "LCL"
+        self.solde = Solde
+        self.statut = Statut
+
+        CompteBancaireLCL.nombre_de_compte += 1
+
+    def add_money(self, money) : 
+        if money >= 0 : 
+            self.solde += money
+            print("New solde : {} €".format(self.solde))
+        else : 
+            raise NotRealMoney
+
+    def remove_money(self, money) : 
+        if self.solde >= money : 
+            self.solde -= money
+            print("New solde : {} €".format(self.solde))
+        else : 
+            raise NotEnoughtMoney 
+
+
+class CompteSalarie(CompteBancaireLCL) : 
+
+    def __init__(self,Nom, Prenom, Age, Solde) : 
+        """"compte special avec un plafond de retrait de 2000€  max"""
+        CompteBancaireLCL.__init__(self,Nom, Prenom, Age, Solde,"salarie")
+        self.plafond = 2000
+
+    def add_money_Salarie(self, money) :
+        if money + self.solde > self.plafond : 
+            raise LimitePlafond 
+        else : 
+            CompteBancaireLCL.add_money(self,money)
+
+
+class ComptePatron(CompteBancaireLCL) : 
+
+    def __init__(self,Nom, Prenom, Age, Solde) : 
+        """"compte special sans plafon de retrait enorme qui ne verse de l'argent qu'aux salariés"""
+        CompteBancaireLCL.__init__(self,Nom, Prenom, Age, 1000000000000,"Patron")
+        self.plafond = 20000
+
+    def add_money_Salarie(self, money, salarie) :
+        if type(salarie) is CompteSalarie : 
+            CompteSalarie.add_money_Salarie(salarie,money)
+        else :
+            raise ErrorType
+
+        
+
+
+
+
