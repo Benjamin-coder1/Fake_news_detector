@@ -1,3 +1,7 @@
+class NegativeWeight(Exception) : pass
+class DemeagementInterdit(Exception): pass
+class ErreurInitialisation(Exception): pass
+
 class EtreVivant():
 	"""docstring for EtreVivant"""
 	def __init__(self,age,taille,poids):
@@ -12,11 +16,18 @@ class EtreVivant():
 		self.age+=1
 
 	def manger(self,quantite):
+		if quantite<=0:
+			raise NegativeWeight
 		self.poids+=quantite
 
 class Humain(EtreVivant):
 		"""docstring for Humain"""
-		def __init__(self,genre,nom):
+		def __init__(self,age,taille,poids,genre,nom):
+			if (type(age)!=int or type(taille)!=float or (type(poids)!=float and type(poids)!=int) or type(genre)!=str or type(nom)!=str):
+				raise ErreurInitialisation
+			self.age = age
+			self.taille=taille
+			self.poids=poids
 			self.genre=genre
 			self.nom=nom
 
@@ -31,7 +42,15 @@ class Humain(EtreVivant):
 
 class Animal(EtreVivant):
 	"""docstring for Animal"""
-	def __init__(self, espece,millieu_de_vie):
+	def __init__(self,age,taille,poids,espece,millieu_de_vie):
+		if (type(age)!=int or type(taille)!=float or (type(poids)!=float and type(poids)!=int) or type(espece)!=str):
+			raise ErreurInitialisation
+		if (millieu_de_vie!="eau" and millieu_de_vie!="terre" and millieu_de_vie!="air" ):
+			raise ErreurInitialisation
+			
+		self.age = age
+		self.taille=taille
+		self.poids=poids
 		self.espece = espece
 		self.millieu_de_vie=millieu_de_vie
 
@@ -39,6 +58,8 @@ class Animal(EtreVivant):
 		return "salut ! je suis un(e)"+self.espece 
 	
 	def demenage(self,nouveau_millieu_de_vie):
+		if nouveau_millieu_de_vie!="eau" and nouveau_millieu_de_vie!="air" and nouveau_millieu_de_vie!="terre":
+			raise DemeagementInterdit
 		self.millieu_de_vie=nouveau_millieu_de_vie
 		
 	def moyen_deplacement(self):
@@ -47,27 +68,4 @@ class Animal(EtreVivant):
 		if (self.millieu_de_vie=="air"):
 			print("Je vol super vite")
 		else:
-			print('Je me deplace en marchant ou en rampant')
-
-#Creation d'un humain
-h=Humain("Garcon","Jonas")
-h.age=21
-h.taille=1.75
-h.poids=65
-#On joue avec cet humain
-print(h)
-
-
-#Creation d'un animal
-a=Animal("vache","terre")
-a.age=4
-print(a)
-a.moyen_deplacement()
-a.demenage("air")
-print("je demenage de la terre : ")
-a.moyen_deplacement()
-print ("Trop bien c'est mon anniv :")
-a.anniverssaire()
-print("J'ai maintenant "+str(a.age)+" ans")
-
-
+			print('Je me déplace en marchant ou en rampant')
