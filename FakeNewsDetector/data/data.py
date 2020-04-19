@@ -3,20 +3,6 @@ import requests
 import error 
 
 
-def affiche(url,sep,list_mot,mot_init) : 
-    if len(list_mot) != 0 : 
-        url += mot_init
-        i = 1
-        for val in list_mot : 
-            if i == len(list_mot) :
-                url += val 
-            else : 
-                url += val + sep
-            i += 1
-    return url 
-
-
-
 
 class Recherche_article : 
 
