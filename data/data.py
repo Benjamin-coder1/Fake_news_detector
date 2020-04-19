@@ -2,7 +2,21 @@
 import requests
 import error 
 
-#self. {'key_word,'key_word_in_title':,'sources':,'from_date':,'to_date':,'langage':,'sortby':}
+
+def affiche(url,sep,list_mot,mot_init) : 
+    if len(list_mot) != 0 : 
+        url += mot_init
+        i = 1
+        for val in list_mot : 
+            if i == len(list_mot) :
+                url += val 
+            else : 
+                url += val + sep
+            i += 1
+    return url 
+
+
+
 
 class Recherche_article : 
 
@@ -38,50 +52,56 @@ class Recherche_article :
         self.sortby = 'revelancy' 
         self.url = ''
 
+
+    @staticmethod
+    def affiche(url,sep,list_mot,mot_init) : 
+        """cette fonction sert pour les 2 fonctions suivantes afin de generer l'URL en respectant les consignes 
+        trouvées sur le site NewsAPI"""
+        if len(list_mot) != 0 : 
+            url += mot_init
+            i = 1
+            for val in list_mot : 
+                if i == len(list_mot) :
+                    url += val 
+                else : 
+                    url += val + sep
+                i += 1
+        return url 
+
     
     def url_everything(self) : 
         """on va générer une URL pour everything grace au attribut de recherche"""
         self.url = 'https://newsapi.org/v2/everything?'
-        for val in self.key_word : 
-            self.url += 'q=' + val +'&'
-        for val in self.key_word_in_title : 
-            self.url += 'qInTitle=' + val + '&'
-        for val in self.sources : 
-            self.url += 'sources=' + val + '&'
-        for val in self.langage : 
-            self.url += 'language=' + val + '&'
 
-        self.url += 'sortBy=' + self.sortby
-        if self.from_date != 0 and self.to_date == 0 :
-            self.url += 'from=' + self.from_date +'&to-' + self.to_date 
-        if self.from_date != 0 and self.to_date == 0 :
-            self.url += 'from=' + self.from_date 
-        if self.from_date == 0 and self.to_date != 0 :
-            self.url += 'to=' + self.to_date 
-        self.url += '&apiKey=41ff73330072433da7a7f9b8171e5989'
+        self.url = self.affiche(self.url,'+',self.key_word,"q=")
+        self.url = self.affiche(self.url,'+',self.key_word_in_title,"&qInTitle=")
+        self.url = self.affiche(self.url,',',self.sources,"&sources=")
+        self.url = self.affiche(self.url,'&language=',self.key_word_in_title,"&language=")
+
+        self.url += '&sortBy=' + self.sortby + '&'
+        if self.from_date != 0  :
+            self.url += 'from=' + str(self.from_date) + '-00-00&'
+        if self.to_date != 0 :
+            self.url += 'to=' + str(self.to_date) + '-12-30&'
+        self.url += 'apiKey=41ff73330072433da7a7f9b8171e5989'
         print("The URL has been sucefully created ! ")
         return self.url
 
     def url_top_headlines(self) : 
         """on va générer une URL pour everything grace au attribut de recherche"""
         self.url = 'https://newsapi.org/v2/top-headlines?'
-        for val in self.key_word : 
-            self.url += 'q=' + val +'&'
-        for val in self.key_word_in_title : 
-            self.url += 'qInTitle=' + val + '&'
-        for val in self.sources : 
-            self.url += 'sources=' + val + '&'
-        for val in self.langage : 
-            self.url += 'language=' + val + '&'
 
-        self.url += 'sortBy=' + self.sortby
-        if self.from_date != 0 and self.to_date == 0 :
-            self.url += 'from=' + self.from_date +'&to-' + self.to_date 
-        if self.from_date != 0 and self.to_date == 0 :
-            self.url += 'from=' + self.from_date 
-        if self.from_date == 0 and self.to_date != 0 :
-            self.url += 'to=' + self.to_date 
-        self.url += '&apiKey=41ff73330072433da7a7f9b8171e5989'
+        self.url = self.affiche(self.url,'+',self.key_word,"q=")
+        self.url = self.affiche(self.url,'+',self.key_word_in_title,"&qInTitle=")
+        self.url = self.affiche(self.url,',',self.sources,"&sources=")
+        self.url = self.affiche(self.url,'&language=',self.key_word_in_title,"&language=")
+
+        self.url += '&sortBy=' + self.sortby + '&'
+        if self.from_date != 0  :
+            self.url += 'from=' + str(self.from_date) + '-00-00&'
+        if self.to_date != 0 :
+            self.url += 'to=' + str(self.to_date) + '-12-30&'
+        self.url += 'apiKey=41ff73330072433da7a7f9b8171e5989'
         print("The URL has been sucefully created ! ")
         return self.url
 
@@ -92,7 +112,7 @@ class Recherche_article :
             raise ErrorURL
         else : 
             self.result = requests.get(self.url).json()
-            if self.result['status'] != 'ok' : 
+            if len(self.result) == 1 : 
                 raise error.FaillureRecupData
             else : 
                 print("Data had been recovered ! {} available articles".format(self.result['totalResults']))
@@ -101,8 +121,9 @@ class Recherche_article :
 
 
 
-ma_recherche = Recherche_article(["covid","hello"],[],[],1200,1300,['es','fr'])
-
-
+ma_recherche = Recherche_article(["Lyon","meilleur",'ville'],[],[],1999,2020,['fr','en'])
+ma_recherche.url_everything()
+print(ma_recherche.url)
+ma_recherche.get_data()
 
 
