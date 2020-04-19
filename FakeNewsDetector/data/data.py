@@ -1,17 +1,17 @@
 
 import requests
 import error 
-
+import color as c 
 
 
 class Recherche_article : 
 
     def __init__(self,key_word,key_word_in_title,sources,from_date,to_date,langage) : 
-        if (type(key_word) != list) and (type(key_word_in_title) != list) and (type(sources) != list) and (type(langage) != list):
+        if (type(key_word) != list) or (type(key_word_in_title) != list) or (type(sources) != list) or (type(langage) != list):
             """on veut enfait des liste contenant les valeur que l'on veut"""
             raise error.BadDictio
    
-        if (type(from_date) != int ) and (type(to_date) != int) :
+        if (type(from_date) != int ) or (type(to_date) != int) :
             """on veut des dates au format int bien évidement """
             raise error.BadDictio
 
@@ -53,6 +53,9 @@ class Recherche_article :
                     url += val + sep
                 i += 1
         return url 
+        @staticmethod
+        def blue(chaine_cara) : 
+            print("\033[34m" + chaine_cara + "\033[0m")
 
     
     def url_everything(self) : 
@@ -70,7 +73,7 @@ class Recherche_article :
         if self.to_date != 0 :
             self.url += 'to=' + str(self.to_date) + '-12-30&'
         self.url += 'apiKey=41ff73330072433da7a7f9b8171e5989'
-        print("The URL has been sucefully created ! ")
+        print(c.Color("The URL has been sucefully created ! ","g"))
         return self.url
 
     def url_top_headlines(self) : 
@@ -88,7 +91,7 @@ class Recherche_article :
         if self.to_date != 0 :
             self.url += 'to=' + str(self.to_date) + '-12-30&'
         self.url += 'apiKey=41ff73330072433da7a7f9b8171e5989'
-        print("The URL has been sucefully created ! ")
+        print(c.Color("The URL has been sucefully created ! ","g"))
         return self.url
 
 
@@ -101,7 +104,7 @@ class Recherche_article :
             if len(self.result) == 1 : 
                 raise error.FaillureRecupData
             else : 
-                print("Data had been recovered ! {} available articles".format(self.result['totalResults']))
+                print(c.Color("Data had been recovered ! " + str(self.result['totalResults']) + " available articles","g"))
 
 
 
