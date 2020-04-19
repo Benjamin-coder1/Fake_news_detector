@@ -20,6 +20,7 @@ class CompteBancaireLCL :
             raise BadInput
 
     def add_money(self, money) : 
+        """helllllo"""
         if money >= 0 : 
             self.solde += money
             print("New solde : {} €".format(self.solde))
