@@ -99,12 +99,22 @@ class Recherche_article :
         """recupere les donnes et les stockes dans l'attribut result"""
         if len(self.url) == 0 : 
             raise ErrorURL
+        self.result = requests.get(self.url).json()
+        if len(self.result) == 1 : 
+            raise error.FaillureRecupData
         else : 
-            self.result = requests.get(self.url).json()
-            if len(self.result) == 1 : 
-                raise error.FaillureRecupData
-            else : 
-                print(c.Color("Data had been recovered ! " + str(self.result['totalResults']) + " available articles","g"))
+            print(c.Color("Data had been recovered ! " + str(self.result['totalResults']) + " available articles","g"))
+        self.result = self.result['articles']
+        for art in self.result : 
+            #on nettoi un peu en supprimant toutes les informations qui ne nous serons pas utile
+            del art['content']
+            del art['urlToImage']
+            del art['url']
+            del art['publishedAt']
+
+    
+
+
 
 
 

@@ -9,5 +9,11 @@ class FaillureRecupData(Exception) :
     def __init__(self) : 
         print(c.Color("The recover of data had fail","r"))
 
+class BAdLanguage(Exception) : 
+	def __init__(self) : 
+		print(c.Color("the language isn't disponible/doesn't exist","r"))
+
+
+
 
 
