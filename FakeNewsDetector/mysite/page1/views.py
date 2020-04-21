@@ -5,8 +5,8 @@ from django import forms
 #On initialise la forme du formulaire
 
 class Article(forms.Form):
-    article = forms.CharField(max_length=1000)
-
+    article = forms.CharField(label='',widget=forms.TextInput(attrs={'size': '40',
+        'placeholder': "Entrez le titre ou l'URL de l'article"}))
 # Create your views here.
 
 def home(request):
@@ -22,10 +22,7 @@ def home(request):
         # Ici nous pouvons traiter les données du formulaire
         article = form.cleaned_data['article']
 
-        score=int(article)%101
-
-        # Nous pourrions ici envoyer l'e-mail grâce aux données 
-        # que nous venons de récupérer
+        score=len(article)%101
     
     # Quoiqu'il arrive, on affiche la page du formulaire.
     return render(request, 'page1.html', locals())

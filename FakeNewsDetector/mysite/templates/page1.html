@@ -1,10 +1,26 @@
 {% load static %} 
+ 
+<head>
+    <meta charset="utf-8" />
+    <!--Ceci permet d'importer le fichier page1.css qui se trouve a la racine du projet /static/page1.css-->
+    <link rel="stylesheet" href="{% static 'page1.css' %}" />
+    </style>
+    <title>Fake News Detector</title>
+</head>
 
 
-<form action="{% url 'home' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Valider" />
-</form>
 
-<h2>{{ score }}</h2>
+<body>
+<center>
+	<h1>Detecteur de Fake News</h1>
+	<!--si le formulaire est remmpli on peut appuyer sur le bouton-->
+	<form action="{% url 'home' %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+	<input type="submit" value="Valider" >
+	</form>
+	<!--afficher la variable score-->
+	<h2>Votre score est de :</h2>
+	<h2>{{ score }}</h2>
+<center>
+</body>
