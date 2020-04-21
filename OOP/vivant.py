@@ -10,7 +10,7 @@ class EtreVivant():
 		self.poids=poids
 
 	def __str__(self):
-		print("j'ai "+age+" ans, je paise "+poids+" kg et je mesure "+taille+"m")
+		return "j'ai "+self.age+" ans, je paise "+self.poids+" kg et je mesure "+size.taille+"m"
 	
 	def anniverssaire(self):
 		self.age+=1
