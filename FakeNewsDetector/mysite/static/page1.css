@@ -1,17 +1,45 @@
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
-</style>  
-
-h2
-{
-	font-family: 'Arial Black';
-	font-weight: 700;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600');
 
 h1
 {
 	font-family: 'Roboto';
 	/*Pour jouer sur la teinte des ecritures on fait varier le nombre*/
-	font-weight: 300;
+	font-weight: 200;
 
+}
+
+h2
+{
+	font-family: 'Roboto';
+	font-weight: 700;
+}
+
+h5
+{
+	font-family: 'Roboto';
+	font-weight: 100;
+
+}
+
+h3,h4
+{
+	font-family: 'Roboto';
+	font-weight: 200;
+}
+
+
+.button {
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  background: #b0b7b8;
+  border-radius: 10px;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 200;
 }
