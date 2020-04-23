@@ -53,10 +53,7 @@ class Recherche_article :
                     url += val + sep
                 i += 1
         return url 
-        @staticmethod
-        def blue(chaine_cara) : 
-            print("\033[34m" + chaine_cara + "\033[0m")
-
+      
     
     def url_everything(self) : 
         """on va générer une URL pour everything grace au attribut de recherche"""
