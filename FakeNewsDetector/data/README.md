@@ -17,5 +17,7 @@ traducteur.py (Yandex Translate) :
 
 	lien recupérer clef : https://translate.yandex.com/developers/keys
 	lien doc : https://tech.yandex.com/translate/doc/dg/reference/translate-docpage/
-	
+
+rech.py : 
+	Ce module sert a a recuperer une URL et a creer un objet a partir de cet url qui sera le point de depart du travail pour la notation, Pour l'instant une instance ne contient que le titre mais d'autres informations pouraient bien etre récupérées si besoin 
 	

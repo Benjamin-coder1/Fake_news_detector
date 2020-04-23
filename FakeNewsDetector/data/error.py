@@ -1,4 +1,5 @@
 import color as c  
+
 class ErrorColor(Exception) : 
     def __init__(self) : 
         print(c.Color("Color certainly doesn't exist !!","r"))
@@ -12,6 +13,10 @@ class FaillureRecupData(Exception) :
 class BAdLanguage(Exception) : 
 	def __init__(self) : 
 		print(c.Color("the language isn't disponible/doesn't exist","r"))
+
+class BadUrl(Exception) : 
+	def __init__(self) : 
+		print(c.Color("URL invalide","r"))
 
 
 

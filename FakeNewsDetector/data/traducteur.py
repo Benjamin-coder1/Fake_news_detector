@@ -16,8 +16,8 @@ def traduction(phrase_a_traduire,langue_depart,langue_finale,a=0) :
 
 	if a == 1 :
 		"""si l'on veut afficher le resulats"""
-		print(c.Color("Phrase (" + langue_depart +") : "  + phrase_a_traduire,"t"))
-		print(c.Color("Traduction (" + langue_finale +") : "  + reponse['text'][0],"t"))
+		print(c.Color(langue_depart.upper() + " : "  + phrase_a_traduire,"t"))
+		print(c.Color(langue_finale.upper() + " : "  + reponse['text'][0],"t"))
 
 	return reponse['text'][0]
 
