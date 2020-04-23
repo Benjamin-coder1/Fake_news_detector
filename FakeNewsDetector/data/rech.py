@@ -59,16 +59,6 @@ class Recherche :
 	
 
 
-url_liste = ["https://www.lefigaro.fr/politique/coronavirus-castaner-previent-que-le-deconfinement-ne-signifiera-pas-la-liberte-d-aller-partout-20200423",
-"https://www.lefigaro.fr/actualite-france/on-s-est-dit-ca-suffit-on-arrete-quand-le-couple-subit-la-loi-du-confinement-20200423",
-"https://edition.cnn.com/2020/04/23/health/coronavirus-vaccine-trial-uk-gbr-intl/index.html"]
-
-
-for url in url_liste : 
-	ma_recherche = Recherche(url)
-	print(ma_recherche.title)
-
-
 
 
 
