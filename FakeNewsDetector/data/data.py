@@ -53,10 +53,11 @@ class Recherche_article :
                     url += val + sep
                 i += 1
         return url 
-      
+        
+
     
     def url_everything(self) : 
-        """on va générer une URL pour everything grace au attribut de recherche"""
+        """on va générer une URL pour everything grace aux attribut de recherche"""
         self.url = 'https://newsapi.org/v2/everything?'
 
         self.url = self.affiche(self.url,'+',self.key_word,"q=")
