@@ -3,7 +3,7 @@
 #ON VA OUVRIR TOUTES LES FONCTIONALITES
 
 
-echo "
+echo """
 from importlib import reload 
 
 import color as c 
@@ -29,11 +29,17 @@ print(c.Color('tweet.py imported with t','o'))
 import tweet as t 
 print('		-----		')
 
+print(c.Color('compte.py imported with co','o'))
+import compte as co
+print('		-----		')
+
+co.stat('donald est mort')
 
 
 
 
-"> ~/.lancement_python.py 
+
+"""> ~/.lancement_python.py 
 export PYTHONSTARTUP=~/.lancement_python.py
 python3
 

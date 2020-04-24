@@ -105,22 +105,18 @@ class Recherche_article :
         self.result = self.result['articles']
         for art in self.result : 
             #on nettoi un peu en supprimant toutes les informations qui ne nous serons pas utile
-            del art['content']
             del art['urlToImage']
             del art['url']
             del art['publishedAt']
+            del art['source']
+            del art['author']
+
 
     
 
 
-
-
-
-
-
-ma_recherche = Recherche_article(["Lyon","meilleur",'ville'],[],[],1999,2020,['fr','en'])
-ma_recherche.url_everything()
-print(ma_recherche.url)
-ma_recherche.get_data()
-
+# ma_recherche = Recherche_article(["Trump","javel","coronavirus"],[],[],1999,2020,['fr','en'])
+# ma_recherche.url_everything()
+# ma_recherche.get_data()
+# print(ma_recherche.result[0])
 
