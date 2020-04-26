@@ -12,7 +12,7 @@ class Recherche :
 		if "https://" in doc :
 			# on recoit en entrée une url 
 			self.url = doc
-			self.__content = urllib.request.urlopen(self.url).read().decode('utf-8')
+			self.content = urllib.request.urlopen(self.url).read().decode('utf-8')
 			print(c.Color("Content has been charged it is an URL","g"))
 			self.get_info() #on recupere le plus d'info nécessaire possible 
 
@@ -42,10 +42,10 @@ class Recherche :
 
 	def get_info(self) :
 		"""on recupere le titre du document """
-		self.title = self.get_from_to(self.__content, "<title>", "</title>")
+		self.title = self.get_from_to(self.content, "<title>", "</title>")
 		print(c.Color("Title recup","t"))
 
-		cont = self.get_from_to(self.__content, """<script type="application/ld+json">""", "</script>")
+		cont = self.get_from_to(self.content, """<script type="application/ld+json">""", "</script>")
 		cont = list(cont)
 		for i in range(len(cont)) : 
 			if (cont[i] == '\n') : 
@@ -62,14 +62,14 @@ class Recherche :
 				print(c.Color("publisher  recup","t"))
 
 		i = 0 
-		while self.__content[i:(i+len("og:description"))] != "og:description" : 
+		while self.content[i:(i+len("og:description"))] != "og:description" : 
 			i +=1 
 
-		while self.__content[i:(i+len("content="))] != "content=" : 
+		while self.content[i:(i+len("content="))] != "content=" : 
 			i +=1 
 		i +=9
 
-		self.description = self.__content[i:(i+300)]
+		self.description = self.content[i:(i+300)]
 		print(c.Color("description  recup","t"))
 
 

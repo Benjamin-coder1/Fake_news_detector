@@ -66,6 +66,7 @@ class Recherche_article :
             raise error.FaillureRecupData
         else : 
             print(c.Color("Data had been recovered ! " + str(self.result['totalResults']) + " available articles","g"))
+        self.nb_art = self.result['totalResults']
         self.result = self.result['articles']
         for art in self.result : 
             #on nettoi un peu en supprimant toutes les informations qui ne nous serons pas utile

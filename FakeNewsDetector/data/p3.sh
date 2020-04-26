@@ -66,8 +66,9 @@ print('		-----		')
 # d.Recherche_article(['US', 'AIR', 'FORCE', 'PULL', 'BOMBERS', 'GUAM'])
 
 
-a = r.Recherche('https://www.bbc.com/pidgin/world-52364633')
-co.key_words({'title':a.title,'description':a.description})
+a = r.Recherche('https://www.bbc.com/news/health-52413995')
+print(a.title)
+print( co.stat(a) )
 
 """> ~/.lancement_python.py 
 export PYTHONSTARTUP=~/.lancement_python.py
