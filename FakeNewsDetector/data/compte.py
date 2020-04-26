@@ -1,6 +1,10 @@
 import data as d
 import rech as r 
 
+import requests
+import json 
+
+
 
 def compte_mot(liste_mot,mot) : 
 	"""compte l'occurence de mot dans liste_chaine_cara"""
@@ -21,59 +25,64 @@ def trier(liste,mot) :
 	return liste_bon_mots
 
 
-def valider(article,mot_clef) : 
-	useless_word = ['le','la','les','de','des','du','un','une','ou','que','quoi']
-	ponct = [':',"'",'«','»','.',',','!','?',';']
 
-	if (article['title'] is None) or ( article['content'] is None) or ( article['description'] is None) : 
-		return 0,1
+def get_syn(mot) : 
+	"""donne les synonymes de mot"""
+	app_id = "8cbbf6fa"
+	app_key = "e66a1dd040c7a05afc372f189c66c98c"
+	url = "https://od-api.oxforddictionaries.com:443/api/v2/entries/en-gb/" + mot.lower()
+	r = requests.get(url, headers={"app_id":app_id, "app_key":app_key}).json()
 
-	if ("".join(mot_clef) in article['title']) or ("".join(mot_clef) in article['content']) or ("".join(mot_clef) in article['description']) :
-		return 1,0
+	syn_mot = []
+	if len(r) == 1 : 
+		return []
 
-	c = 0 # nombre doccurence totale des mots clefs dans la description de l'article 
+	for k in r['results'][0]['lexicalEntries'] : 
+		if 'synonyms' in k['entries'][0]['senses'][0].keys() : 
+			for i in k['entries'][0]['senses'][0]['synonyms'] :
+				syn_mot.append(i['text'])
 
-	b = article['title'].upper().split()
+	return syn_mot
+
+def key_words(article) : 
+	"""determine les mots clefs"""
+	titre = article['title']
+	titre = titre.upper().split()
+
+	descr = article['description']
+	descr = descr.upper().split()
+
+	useless_word = ['by','First', 'firstly', 'first of all', 'in the first place', 'first and foremost','Secondly','thirdly', 'then', 'next' ,'at first sight', 'as a matter of fact', 'in fact', 'at all events', 'in any cases', 'actually', 'anyway', 'in this respect','to some extent','as far as','from','a', 'to', 'in order to','so as to ','For', 'if' ,'whereas', 'while','unlike', 'contrary to','as against','conversely', 'on the contrary', 'in contrast to','or','else','otherwise','although','though','even','whatever','yet','still','however','nevertheless', 'nonetheless','all','despite', 'in spite of', 'instance','example','such as','like','above all' ,'because','since','thanks','so','that', 'therefore', 'thus','hence','once','well','also','too','similarly','the','a','an','to','from','at','when','for','of','in','and','are','is','would','should','could','have','be','been','will']
+	ponct = [':',"'",'«','»','.',',','!','?',';','-']
+
 	for us_wor in useless_word + ponct : 
-		b = trier(b,us_wor).copy()
+		descr = trier(descr,us_wor).copy()
+		titre = trier(titre,us_wor).copy()
+
+	print(titre)
+	print(descr)
+	print('\n')
+
+	liste_mot_clefs = []
+	for mot in descr : 
+		print('---' + mot + '---')
+		syn_mot = get_syn(mot)
+		for syn in syn_mot + [mot]: 
+			print('*' + syn)
+			if syn.upper() in titre : 
+				if syn.upper() not in liste_mot_clefs : 
+					liste_mot_clefs.append(syn.upper())
+
+	print(liste_mot_clefs)
+	# en théorie on a ou pas une liste de mot clefs reste a voir si elle est vide ou non 
+
+	return liste_mot_clefs
 
 
-	for mot in mot_clef : 
-		c += compte_mot(b,mot.upper())
-
-	b = article['content'].upper().split()
-	for mot in mot_clef : 
-		c += compte_mot(b,mot.upper())
-
-	b = article['description'].upper().split()
-	for mot in mot_clef : 
-		c += compte_mot(b,mot.upper())
-
-	# pifometre	
-	print(c)
-	if c > len(mot_clef)/5 : 
-		return 1,0
-	return 0,0
 
 
-def stat(mon_url) : 
-	mon_article = r.Recherche(mon_url)    #article qu'on vux analyser
-	les_articles = d.Recherche_article(mon_article.title.split(),[],[],0,0,["en"])
-	les_articles.url_everything()
-	les_articles.get_data()
 
-	cte = 0
-	bon_article = 0
 
-	if len(les_articles.result) == 0 : 
-		return 0
-	for article in les_articles.result :
-		a,b = valider(article,mon_article.title.split())
-		bon_article += a
-		cte += b
-		print("-------", bon_article,"-------")
-
-	print(bon_article * 100 / (len(les_articles.result) - cte))	
 
 # print(stat("Donald trump"))
 
