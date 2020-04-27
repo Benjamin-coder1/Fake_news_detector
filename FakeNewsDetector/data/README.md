@@ -21,3 +21,9 @@ traducteur.py (Yandex Translate) :
 rech.py : 
 	Ce module sert a a recuperer une URL et a creer un objet a partir de cet url qui sera le point de depart du travail pour la notation, Pour l'instant une instance ne contient que le titre mais d'autres informations pouraient bien etre récupérées si besoin 
 	
+Compte.py : 
+	Ce module sert a la notation de l'article, il contient des programmes traitant l'article en recuperant les informations grace aux modules précédent puis il note la validité de l'article selon ses recherches
+	NOTONS bien que malgres tout les résulats affichés ne sont que tres approximatifs voir tres souvent meme faux, cela est du a la facon d'évaluer les données, de simples données statistiques sans comprehension du sens ont peu de valeurs
+
+Pour lancer le programme aller dans compte.py puis taper :
+	co.note(article_titre/article_url)

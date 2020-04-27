@@ -45,21 +45,23 @@ class Recherche :
 		self.title = self.get_from_to(self.content, "<title>", "</title>")
 		print(c.Color("Title recup","t"))
 
-		cont = self.get_from_to(self.content, """<script type="application/ld+json">""", "</script>")
-		cont = list(cont)
-		for i in range(len(cont)) : 
-			if (cont[i] == '\n') : 
-				cont[i] = " "
+		if """<script type="application/ld+json">""" in self.content : 		
 
-		cont = "".join(cont)
-		cont = UserDict(eval(cont))
-		if "publisher" in cont.keys() : 
-			if type(cont["publisher"]) == dict : 
-				self.publisher = cont["publisher"]["name"]
-				print(c.Color("publisher  recup","t"))
-			else : 
-				self.publisher = cont["publisher"]
-				print(c.Color("publisher  recup","t"))
+			cont = self.get_from_to(self.content, """<script type="application/ld+json">""", "</script>")
+			cont = list(cont)
+			for i in range(len(cont)) : 
+				if (cont[i] == '\n') : 
+					cont[i] = " "
+
+			cont = "".join(cont)
+			cont = UserDict(eval(cont))
+			if "publisher" in cont.keys() : 
+				if type(cont["publisher"]) == dict : 
+					self.publisher = cont["publisher"]["name"]
+					print(c.Color("publisher  recup","t"))
+				else : 
+					self.publisher = cont["publisher"]
+					print(c.Color("publisher  recup","t"))
 
 		i = 0 
 		while self.content[i:(i+len("og:description"))] != "og:description" : 

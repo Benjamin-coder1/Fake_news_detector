@@ -47,13 +47,13 @@ class Recherche_article :
 
     def get_url(self) : 
         """on va générer une URL pour everything grace au attribut de recherche"""
-        self.url = 'https://newsapi.org/v2/top-headlines?'
+        self.url = 'https://newsapi.org/v2/everything?'
         self.url = self.affiche(self.url,'+',self.key_word,"q=")
         self.url = self.affiche(self.url,'&language=',self.langage,"&language=")
         self.url += '&sortBy=' + self.sortby + '&'
         self.url += 'apiKey=41ff73330072433da7a7f9b8171e5989'
         print(c.Color("The URL has been sucefully created ! ","g"))
-        return self.url
+
 
 
     def get_data(self) : 
