@@ -34,7 +34,43 @@ print(c.Color('rech.py imported with r','o'))
 import rech as r 
 print('		-----		')
 
-co.note('https://edition.cnn.com/2020/04/27/asia/kim-jong-un-health-letter-south-african-president-intl/index.html')
+
+mon_article = r.Recherche('https://www.lemonde.fr/planete/article/2020/05/01/coronavirus-dans-le-monde-donald-trump-lie-le-covid-19-a-un-laboratoire-chinois_6038327_3244.html')
+cont = list(mon_article.content)
+
+
+i = 0 
+while i < len(cont) : 
+	if cont[i] == '<' :
+		j=1
+		cont[i] = '*'
+		while cont[i+j] != '>':
+			cont[i+j] = '*'
+			j+=1
+			
+
+		cont[i+j] = '*'
+		i += j 
+	else : 
+		i +=1 
+
+
+
+cont= ''.join(cont).split()
+
+new_cont = []
+
+for i in range(len(cont)) : 
+	if (len(cont[i]) > 0) and (len(cont[i]) < 15) and ('|' not in cont[i]) and (':' not in cont[i])  and ('-' not in cont[i])  and ('*' not in cont[i]) and (';' not in cont[i])  and  ('(' not in cont[i]) and (')' not in cont[i]) and ('&' not in cont[i]) and ('=' not in cont[i]) and  ('.' not in cont[i]) and ('[' not in cont[i]) and (']' not in cont[i]) and  ('{' not in cont[i]) and ('}' not in cont[i]) and ('/' not in cont[i]) and ('!' not in cont[i]) and ('?' not in cont[i]): 
+		new_cont.append(cont[i])
+
+cont = new_cont.copy()
+cont = ' '.join(cont)
+print(cont.encode('utf-8').decode('utf-8'))
+
+
+
+
 
 
 

@@ -2,6 +2,7 @@
 import requests
 import error 
 import color as c 
+import trait_lang as tl
 
 
 class Recherche_article : 
@@ -50,7 +51,7 @@ class Recherche_article :
         self.url = 'https://newsapi.org/v2/everything?'
         self.url = self.affiche(self.url,'+',self.key_word,"q=")
         self.url = self.affiche(self.url,'&language=',self.langage,"&language=")
-        self.url += '&sortBy=' + self.sortby + '&'
+        self.url += '&sortBy=' + self.sortby + '&pageSize=100&'
         self.url += 'apiKey=41ff73330072433da7a7f9b8171e5989'
         print(c.Color("The URL has been sucefully created ! ","g"))
 
@@ -75,6 +76,13 @@ class Recherche_article :
             del art['publishedAt']
             del art['source']
             del art['author']
+
+
+ref = "Trump suggests injecting disinfectant as treatment"
+m = Recherche_article(["Donald trump","disinfectant"])
+for art in m.result : 
+    print("- ",art['title'])
+    tl.compare_sentence(art['title'],ref)
 
 
     
