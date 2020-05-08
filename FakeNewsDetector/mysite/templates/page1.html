@@ -12,19 +12,25 @@
 
 <body>
 <center>
-	<h1>Detecteur de Fake News</h1>
-	<h5>V1.0</h5>	
-	<!--si le formulaire est remmpli on peut appuyer sur le bouton-->
-	<form action="{% url 'home' %}" method="post">
-		{% csrf_token %}
-		{{ form.as_p }}
-	<input type="submit" class="button" value="Valider" >
-	</form>
-	<!--afficher la variable score-->
-	<h2>Votre score est de :</h2>
-	<h2>{{ score }}</h2>
-	<h3>Crédits</h3>
-	<h4>Benjamin Tibi & Jonas Benhamou</h4>
 	
+	<div id="bandeau">
+		<h1>Detecteur de Fake News</h1>
+		<h5>V1.0</h5>
+	</div>
+	<div id="contenu">	
+		<!--si le formulaire est remmpli on peut appuyer sur le bouton-->
+		<form action="{% url 'home' %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+		<input type="submit" class="button" value="Valider" >
+		</form>
+		<!--afficher la variable score-->
+		<h2>Votre score est de :</h2>
+		<h2>{{ score }}</h2>
+	</div>
+	<div id="piedpage">
+		<h3>Crédits</h3>
+		<h4>Benjamin Tibi & Jonas Benhamou</h4>
+	</div>
 <center>
 </body>
