@@ -5,11 +5,7 @@ from collections import UserDict
 import trait_lang as tl
 import operator 
 
-
-
-
 class Recherche_On_Article : 
-
 	"""
 	DESCRIPTION 
 	    this class allows to make research on a specifical article on the net
@@ -242,9 +238,8 @@ class Recherche_On_Article :
 	    actors = []
 	    for A_word in A : 
 	    	# we keep only the groups/organisation/people date is not necessary 
-	    	if A_word[1] != 'DATE' : 
+	    	if A_word[1] not in  ['CARDINAL','DATE'] : 
 	    		actors += str(A_word[0]).split()
-
 	    return actors
 
 

@@ -2,6 +2,7 @@ import rech
 import data 
 import trait_lang
 import trait_lang
+import color as c 
 import matplotlib.pyplot as plt 
 
 #article correspond à ce l'utilisateur a ecrit dans la barre de recherche
@@ -32,8 +33,7 @@ def scooring(article):
     else : 
         # else, we have just a title to analyse 
         # We have just a list with the main entities of the sentence
-        key_words_li = mon_article.get_key_words_nlp()
-
+        key_words_li = [mon_article.get_key_words_nlp()]
     # we store the result of similarity in a list
     list_simi = []
     # we store the title in a list to be sure we don't count some times the same title
@@ -49,8 +49,9 @@ def scooring(article):
                 list_simi.append(trait_lang.compare_sentence(tit,mon_article.title))
 
     print("\n", "number of articles analysed : ", str(len(list_simi)),"\n")
+    print(c.Color( 'MAX DE SIMILARITE : ' + str(max(list_simi)) ,'v') )
     plt.plot(range(len(list_simi)), [0.85]*len(list_simi))
     plt.plot(range(len(list_simi)), list_simi)
     plt.show()
 
-scooring("https://www.bbc.com/news/world-us-canada-52506079")
+scooring("https://www.bbc.com/news/world-52603017")
