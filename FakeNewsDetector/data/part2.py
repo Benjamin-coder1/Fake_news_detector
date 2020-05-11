@@ -5,7 +5,6 @@ import trait_lang
 import color as c 
 import matplotlib.pyplot as plt 
 
-#article correspond à ce l'utilisateur a ecrit dans la barre de recherche
 def scooring(article):
     """
     DESCRIPTION 
@@ -38,6 +37,9 @@ def scooring(article):
     list_simi = []
     # we store the title in a list to be sure we don't count some times the same title
     t = []
+    # we add the all entire title in case of we didn't dinf any key words .... (bad case, you must give an url to avoid that !!)
+    key_words_li.append(trait_lang.degrematiser(trait_lang.nettoyer(mon_article.title)).split())
+
     for lst in key_words_li : 
         # we send the list of key words to NewAPI and we calculate the similatiry with each title 
         m = data.Recherche_NewAPI(lst)
@@ -54,4 +56,7 @@ def scooring(article):
     plt.plot(range(len(list_simi)), list_simi)
     plt.show()
 
-scooring("https://www.bbc.com/news/world-52603017")
+scooring("hello it is me Mario")
+
+
+

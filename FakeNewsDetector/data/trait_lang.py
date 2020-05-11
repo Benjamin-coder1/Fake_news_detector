@@ -84,7 +84,7 @@ def neg_or_pos(sentence) :
 			1 if the sentence is positive / -1 is it is negative
 	"""	
 	A = [(X,X.pos_) for X in nlp(sentence)]
-	# thi code line decompose the sentence and analyse the type of each word (NOUN/VERB/PART ... )
+	# this code line decompose the sentence and analyse the type of each word (NOUN/VERB/PART ... )
 	for val in A : 
 		if (str(val[0]) == "n't") or (str(val[0]) == "no") or (str(val[0]) == "not")  :
 			return -1
