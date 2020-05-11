@@ -17,5 +17,16 @@ class RandomTest(unittest.TestCase):
         for url in url_true:
             self.assertTrue(part1.scooring_1(url)>=80)
 
-        
+    def test_titres(self):
+        #On test que notre algo arrive a acceder a new Api pour rechercher les titres
+        #On verifie que le score est superieur a 80 car cce sont de vraies nouvelles
 
+        titres_true=['the earth is flat',
+        'Donald Trump is the president of USA',
+        'Car sales picked up at the end of April, AutoNation says.']
+
+        for titre in titres_true:
+            self.assertTrue(part1.scooring_1(titre)>=80)
+            
+if __name__ == '__main__':
+    unittest.main()    
