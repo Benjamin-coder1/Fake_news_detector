@@ -1,8 +1,8 @@
-import rech
-import data 
-import trait_lang
-import trait_lang
-import color as c 
+import fonctions.rech as rech
+import fonctions.data as data
+import fonctions.trait_lang as trait_lang
+import fonctions.error as error
+import fonctions.color as c 
 import matplotlib.pyplot as plt 
 
 def scooring_2(article):
@@ -55,13 +55,10 @@ def scooring_2(article):
                 print("- ",tit)
                 list_simi.append(trait_lang.compare_sentence(tit,mon_article.title))
     print("\n", "number of articles analysed : ", str(len(list_simi)),"\n")
-    plt.plot(range(len(list_simi)), [0.85]*len(list_simi))
-    plt.plot(range(len(list_simi)), list_simi)
-    plt.show()
+    #plt.plot(range(len(list_simi)), [0.85]*len(list_simi))
+    #plt.plot(range(len(list_simi)), list_simi)
+    #plt.show()
 
     return max(list_simi)
 
-print(c.Color("NOTATION : " + str(scooring_2("https://www.bbc.com/news/world-52603017")) ,'v'))
-
-
-
+print(scooring_2('The earth is flat'))

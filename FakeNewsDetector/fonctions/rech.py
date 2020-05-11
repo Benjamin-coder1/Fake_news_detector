@@ -1,8 +1,8 @@
 import urllib.request 
-import error 
-import color as c
+import fonctions.error as error
+import fonctions.color as c
 from collections import UserDict
-import trait_lang as tl
+import fonctions.trait_lang as tl
 import operator 
 
 class Recherche_On_Article : 

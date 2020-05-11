@@ -1,5 +1,5 @@
-import data
-import rech 
+import fonctions.data as data
+import fonctions.rech as rech
 import requests
 import json 
 import operator 

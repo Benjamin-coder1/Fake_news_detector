@@ -1,5 +1,5 @@
 import spacy
-import color as c
+import fonctions.color as c
 
 
 # we are going to use spacy to make analyse of sentences using NLP and machine learning and 

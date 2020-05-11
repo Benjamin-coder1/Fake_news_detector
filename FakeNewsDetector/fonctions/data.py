@@ -1,7 +1,7 @@
 
 import requests
-import error 
-import color as c 
+import fonctions.error as e
+import fonctions.color as c 
 
 class Recherche_NewAPI : 
     """
@@ -50,17 +50,17 @@ class Recherche_NewAPI :
     def __init__(self,key_word,langage = ["en"]) : 
         if (type(key_word) != list) or (type(langage) != list):
             """on veut enfait des liste contenant les valeur que l'on veut"""
-            raise error.BadDictio
+            raise e.BadDictio
    
         for val in key_word +  langage  : 
             """on verifie que l'on a bien donné des mots"""
             if type(val) != str :
-                raise error.BadDictio
+                raise e.BadDictio
 
         for val in langage : 
             """ le langage ne peut etre que ceux dessous"""
             if val not in  ['ar','de','en','es','fr','he','it','nl','no','pt','ru','se','ud','zh'] : 
-                raise error.BadDictio
+                raise e.BadDictio
 
         self.key_word = key_word
         self.langage = langage
@@ -114,7 +114,7 @@ class Recherche_NewAPI :
         self.result = requests.get(self.url).json()
         if len(self.result) == 1 : 
             # the response of NewAPI is empty ... 
-            raise error.FaillureRecupData
+            raise e.FaillureRecupData
 
         self.nb_art = self.result['totalResults']
         self.result = self.result['articles']

@@ -1,7 +1,7 @@
-import compte 
-import color as c
-import rech 
-import data 
+import fonctions.compte as compte
+import fonctions.color as c
+import fonctions.rech as rech
+import fonctions.data as d
 from math import exp
 
 # Ce module permet de lancer le programme fait pour la partie 1 sans nlp
@@ -34,7 +34,7 @@ def scooring_1(article) :
 	print(key_words_li)
 	
 	# Now we make researchs on NewAPI with the key words finded
-	m = data.Recherche_NewAPI(key_words_li)
+	m = d.Recherche_NewAPI(key_words_li)
 
 	#Now we have the number of results in m.nb_art
 	#We give a note thank to the number of results (see the report)
