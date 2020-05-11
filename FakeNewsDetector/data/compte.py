@@ -1,6 +1,5 @@
 import data
 import rech 
-from math import exp
 import requests
 import json 
 import operator 

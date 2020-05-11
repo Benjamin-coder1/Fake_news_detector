@@ -208,10 +208,8 @@ class Recherche_On_Article :
 				this is the list of the main entities of the sentence find by spacy 
 		    
 		"""
-
 	    #------- we supress the ponctuation and the publisher (if we know him) ------ 
-
-	    #we start with ponctuation 
+	    # we start with ponctuation 
 	    self.title = list(self.title)
 	    new = []
 	    for cara in self.title : 
