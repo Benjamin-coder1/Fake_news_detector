@@ -60,5 +60,3 @@ def scooring_2(article):
     #plt.show()
 
     return max(list_simi)
-
-print(scooring_2('The earth is flat'))

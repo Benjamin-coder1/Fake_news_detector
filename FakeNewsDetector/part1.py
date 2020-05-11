@@ -46,4 +46,4 @@ def scooring_1(article) :
 		note += 2*(1-note)*(nb_m/3-1)/3 
 	return note
 
-print(c.Color("NOTATION : " + str(scooring_1("https://www.bbc.com/news/world-52603017")) ,'v'))
+#print(c.Color("NOTATION : " + str(scooring_1("https://www.bbc.com/news/world-52603017")) ,'v'))
