@@ -59,7 +59,6 @@ class Recherche_On_Article :
 			except : 
 				pass 
 			if not hasattr(self,"content") : 
-				print("helllllllllllllo")
 				raise error.BadUrl
 			print(c.Color("Content has been charged it is an URL","g"))
 			self.publisher = ""
