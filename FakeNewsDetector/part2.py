@@ -1,8 +1,8 @@
-import fonctions.rech as rech
-import fonctions.data as data
-import fonctions.trait_lang as trait_lang
-import fonctions.error as error
-import fonctions.color as c 
+import rech 
+import data 
+import trait_lang 
+import error 
+import color  
 import matplotlib.pyplot as plt 
 
 def scooring_2(article):

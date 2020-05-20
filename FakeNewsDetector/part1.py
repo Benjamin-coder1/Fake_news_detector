@@ -1,7 +1,7 @@
-import fonctions.compte as compte
-import fonctions.color as c
-import fonctions.rech as rech
-import fonctions.data as d
+import compte
+import color 
+import rech 
+import data 
 from math import exp
 
 # Ce module permet de lancer le programme fait pour la partie 1 sans nlp
