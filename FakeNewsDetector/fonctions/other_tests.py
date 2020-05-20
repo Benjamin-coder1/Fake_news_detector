@@ -61,17 +61,30 @@ def get_list_fake_sources() :
 
 
 def test_on_publisher(article) : 
+	"""
+	DESCRIPTION 
+	    this function is used to give a note to an article
+	    If the publisher is in get_list_fake_sources() we give the note of 0 else the note is 1
+
+	PARAMETERS
+	    param1 : article
+	        This must be our article 
+	 
+	OUTPUT : 
+		out1 : int
+			0 or 1
+
+	"""		
 	if not isinstance(article,rech.Recherche_On_Article) :
+		# here we have a bad input 
 		raise error.FaillureRecupData
 
 	if hasattr(article,"publisher") : 
-		# On dispose du publieur 
-		if article.publisher in get_list_fake_sources() : 
-			return 0
-
-	elif hasattr(article,"content") : 
-		for web_site in get_list_fake_sources() : 
-			if web_site in article.content : 
+		# we have a publisher so we look if publisher is in the list of kake new publishers
+		for fake in get_list_fake_sources() : 
+			if "".join(fake.lower().split()) in article.publisher.lower() : 
 				return 0
+
 	return 1
+
 

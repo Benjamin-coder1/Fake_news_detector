@@ -1,12 +1,12 @@
 import spacy
-import fonctions.color as c
+import color as c
 
 
 # we are going to use spacy to make analyse of sentences using NLP and machine learning and 
 # to compare sentences what we need 
 
 # We try by chatrging the following module containing 1 million of words (loading can be a little long)
-nlp = spacy.load('en_core_web_lg')
+nlp = spacy.load('en_core_web_sm')
 print(c.Color("en_core_web_lg has been charged","g"))
 
 

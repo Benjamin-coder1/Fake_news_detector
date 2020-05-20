@@ -1,4 +1,4 @@
-import fonctions.color as c  
+import color as c  
 
 class ErrorColor(Exception) : 
     def __init__(self) : 

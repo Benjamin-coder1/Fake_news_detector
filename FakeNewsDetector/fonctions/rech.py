@@ -1,8 +1,7 @@
 import urllib.request 
-import fonctions.error as error
-import fonctions.color as c
-from collections import UserDict
-import fonctions.trait_lang as tl
+import error 
+import color as c
+import trait_lang as tl
 import operator 
 
 class Recherche_On_Article : 
@@ -60,6 +59,7 @@ class Recherche_On_Article :
 			except : 
 				pass 
 			if not hasattr(self,"content") : 
+				print("helllllllllllllo")
 				raise error.BadUrl
 			print(c.Color("Content has been charged it is an URL","g"))
 			self.publisher = ""
@@ -114,7 +114,7 @@ class Recherche_On_Article :
 		"""
 
 		# ------- we start recovering the title (necessary ) -------
-		self.title = self.get_from_to(self.content, "<title>", "</title>")
+		self.title = self.get_from_to(self.content, "<title", "</title>")
 		if self.title is None : 
 			# we don't find the title we can't continue
 			raise error.BadUrl
@@ -124,26 +124,22 @@ class Recherche_On_Article :
 		# ------- we try to recover the name of the publisher -------
 		# we can need it because in manay case the name of the publisher is also in the title 
 		# and it create a lot of problems in the search of key words ... 
-		if """<script type="application/ld+json">""" in self.content : 
-			#normaly after that we have a dictionnary with the information 
-			cont = self.get_from_to(self.content, """<script type="application/ld+json">""", "</script>")
-			cont = list(cont)
-			for i in range(len(cont)) : 
-				if (cont[i] == '\n') : 
-					cont[i] = " "
-			cont = "".join(cont)
-			cont = UserDict(eval(cont))
+		# We recover the title in the url
+		
+		if "https://www." in self.url : 
+			i =  len("https://www.")
+			while self.url[i:(i+3)] != ".co" : 
+				self.publisher += self.url[i]
+				i += 1
+			print(c.Color("Publisher recup","t"))
+		else :  
+			i =  len("https://")
+			while self.url[i:(i+3)] != ".co" : 
+				self.publisher += self.url[i]
+				i += 1
+			print(c.Color("Publisher recup","t"))
 
-			if "publisher" in cont.keys() : 
-				if type(cont["publisher"]) == dict : 
-					self.publisher = cont["publisher"]["name"]
-					print(c.Color("publisher  recup","t"))
-				else : 
-					self.publisher = cont["publisher"]
-					print(c.Color("publisher  recup","t"))
-
-
-		# ------- we try to recover only the text of the articlet -------
+		# ------- we try to recover only the text of the article -------
 		i=0 
 		self.text = []
 		while i < len(self.content) : 
@@ -158,7 +154,21 @@ class Recherche_On_Article :
 				self.text.append(" ")
 			else : 
 				i += 1
+
+		# we supress all the code of the shapping < ..... code ...... >
+		i = 0
+		while i < len(self.text) : 
+			if self.text[i] == "<" : 
+				while self.text[i] != ">" : 
+					self.text[i] = ""
+					i += 1
+				self.text[i] = ""
+			else : 
+				i += 1
 		self.text = "".join(self.text).lower()
+
+
+
 		if len(self.text) <  1000 : 
 			# sometime the text isn't between <p> and </p> so we are going to analyse all the words of the code
 			# it is not extraordary but it is better than nothing
