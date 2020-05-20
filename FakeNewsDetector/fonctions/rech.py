@@ -55,7 +55,12 @@ class Recherche_On_Article :
 			# GREAT !  we have an url we are going to recover a lot of data 
 			self.url = doc
 			#we make a request on the net to recover the code of the page of the url it is html code
-			self.content = urllib.request.urlopen(self.url).read().decode('utf-8')   
+			try : 
+				self.content = urllib.request.urlopen(self.url).read().decode('utf-8')   
+			except : 
+				pass 
+			if not hasattr(self,"content") : 
+				raise error.BadUrl
 			print(c.Color("Content has been charged it is an URL","g"))
 			self.publisher = ""
 			#we recover now data in self.content ! 

@@ -34,7 +34,7 @@ def scooring_1(article) :
 	print(key_words_li)
 	
 	# Now we make researchs on NewAPI with the key words finded
-	m = d.Recherche_NewAPI(key_words_li)
+	m = data.Recherche_NewAPI(key_words_li)
 
 	#Now we have the number of results in m.nb_art
 	#We give a note thank to the number of results (see the report)

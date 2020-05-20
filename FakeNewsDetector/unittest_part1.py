@@ -11,9 +11,7 @@ class Part1Test(unittest.TestCase):
 
         url_true=['https://www.bbc.com/news/world-us-canada-52623292',
         'https://www.bbc.com/news/science-environment-52587488',
-        'https://www.bbc.com/news/world-latin-america-52618707',
-        'https://www.nytimes.com/2020/05/11/us/politics/kamala-harris-biden-vp.html',
-        'https://www.nytimes.com/2020/05/11/world/asia/taliban-general-defect-afghanistan.html']
+        'https://www.bbc.com/news/world-latin-america-52618707']
 
         for url in url_true:
             self.assertTrue(part1.scooring_1(url)>=0)
