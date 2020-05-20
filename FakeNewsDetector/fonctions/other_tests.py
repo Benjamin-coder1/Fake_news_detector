@@ -60,7 +60,7 @@ def get_list_fake_sources() :
 	return lst
 
 
-def test_on_publisher(article) : 
+def other_test_1_test_on_publisher(article) : 
 	"""
 	DESCRIPTION 
 	    this function is used to give a note to an article

@@ -1,5 +1,5 @@
-import fonctions.data as data
-import fonctions.rech as rech
+import data as data
+import rech as rech
 import requests
 import json 
 import operator 
@@ -112,7 +112,7 @@ def stat(mon_article) :
 
 		#--------------- we class the words -----------------# 
 		# we are going to class the words in fuction of their apparition in NewAPI 
-		# we pit the result on a dictionnary val_int
+		# we put the result in a dictionnary val_int
 		val_int = {}
 		for mot_titre in mon_article.title.split() : 
 			val_int[mot_titre] = data.Recherche_NewAPI([mot_titre.upper()]).nb_art

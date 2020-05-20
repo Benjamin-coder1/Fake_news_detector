@@ -6,7 +6,7 @@ import color as c
 # to compare sentences what we need 
 
 # We try by chatrging the following module containing 1 million of words (loading can be a little long)
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_lg')
 print(c.Color("en_core_web_lg has been charged","g"))
 
 

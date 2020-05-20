@@ -98,7 +98,7 @@ class Recherche_NewAPI :
         self.url = self.affiche(self.url,'+',self.key_word,"q=")
         self.url = self.affiche(self.url,'&language=',self.langage,"&language=")
         self.url += '&sortBy=' + self.sortby + '&pageSize=100&'
-        self.url += 'apiKey=41ff73330072433da7a7f9b8171e5989'
+        self.url += 'apiKey=d9df0d3e817c4e0ba0666eb9295f315b'
         print(c.Color("The URL has been sucefully created ! ","g"))
 
 
