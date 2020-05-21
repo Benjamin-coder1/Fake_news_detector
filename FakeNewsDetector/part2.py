@@ -74,6 +74,3 @@ def scooring_2(article):
         print(c.Color("Note 2 : 0","t"))
         print(c.Color("------------------------------------------------------------------------","t"))
         return 0
-
-
-scooring_2("https://www.bbc.com/news/world-us-canada-52733220?intlink_from_url=https://www.bbc.com/news/topics/cp7r8vgl2lgt/donald-trump&link_location=live-reporting-story")

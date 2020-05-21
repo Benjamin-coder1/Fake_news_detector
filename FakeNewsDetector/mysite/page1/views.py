@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django import forms
+import part2 
+import numpy as np
 
 #On initialise la forme du formulaire
 
@@ -22,7 +24,7 @@ def home(request):
         # Ici nous pouvons traiter les données du formulaire
         article = form.cleaned_data['article']
 
-        score=len(article)%101
+        score=np.floor(part2.scooring_2(article)*100)
     
     # Quoiqu'il arrive, on affiche la page du formulaire.
     return render(request, 'page1.html', locals())
